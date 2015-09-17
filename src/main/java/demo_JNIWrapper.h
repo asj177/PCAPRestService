@@ -9,11 +9,35 @@ extern "C" {
 #endif
 /*
  * Class:     demo_JNIWrapper
- * Method:    multiply
- * Signature: (II)I
+ * Method:    pax_get_error_string
+ * Signature: (I)Ljava/lang/String;
  */
-JNIEXPORT jint JNICALL Java_demo_JNIWrapper_multiply
-  (JNIEnv *, jobject, jint, jint);
+JNIEXPORT jstring JNICALL Java_demo_JNIWrapper_pax_1get_1error_1string
+  (JNIEnv *, jobject, jint);
+
+/*
+ * Class:     demo_JNIWrapper
+ * Method:    packet_mining_start
+ * Signature: (Ldemo/PcapParameters;)I
+ */
+JNIEXPORT jint JNICALL Java_demo_JNIWrapper_packet_1mining_1start
+  (JNIEnv *, jobject, jobject);
+
+/*
+ * Class:     demo_JNIWrapper
+ * Method:    packet_mining_cancel
+ * Signature: (Ljava/lang/String;)I
+ */
+JNIEXPORT jint JNICALL Java_demo_JNIWrapper_packet_1mining_1cancel
+  (JNIEnv *, jobject, jstring);
+
+/*
+ * Class:     demo_JNIWrapper
+ * Method:    packet_mining_get_pcap_file_name
+ * Signature: (Ljava/lang/String;Ljava/lang/String;)I
+ */
+JNIEXPORT jint JNICALL Java_demo_JNIWrapper_packet_1mining_1get_1pcap_1file_1name
+  (JNIEnv *, jobject, jstring, jstring);
 
 #ifdef __cplusplus
 }
