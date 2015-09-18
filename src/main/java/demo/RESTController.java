@@ -102,7 +102,7 @@ public class RESTController {
 		HashMap result_output=new HashMap(); 	
 		
 		
-		//respEntity = new ResponseEntity<JSONObject>(null, HttpStatus.OK);
+		
 		return null;
 
 	}
@@ -126,14 +126,13 @@ public class RESTController {
 		if(result.exists()){
 			InputStream inputStream = new FileInputStream("/home/arpit/Documents/PCAP/dummyPath/"+fileName); 
 			String type=result.toURL().openConnection().guessContentTypeFromName(fileName);
-			//InputStream targetStream =ServletContext.class.getResourceAsStream("/home/arpit/Documents/PCAP/dummyPath/"+fileName);
+			
 			byte[]out=org.apache.commons.io.IOUtils.toByteArray(inputStream);
-			//InputStreamResource inputStreamResource = new InputStreamResource(targetStream);
+			
 			HttpHeaders responseHeaders = new HttpHeaders();
 			responseHeaders.add("content-disposition", "attachment; filename=" + fileName);
 			responseHeaders.add("Content-Type",type);
-			//responseHeaders.set
-			//responseHeaders.setContentLength(inputStream.);
+			
 			respEntity = new ResponseEntity(out, responseHeaders,HttpStatus.OK);
 			
 			
@@ -154,6 +153,7 @@ public class RESTController {
 	 * @return
 	 */
 	
+	
 	@RequestMapping(value = URIConstansts.PCAP, produces = { "application/json" }, method = RequestMethod.DELETE)
 	public @ResponseBody ResponseEntity deleteOperation(HttpServletRequest request){
 		
@@ -162,12 +162,12 @@ public class RESTController {
 	    Cookie[]cookies=request.getCookies();
 	    
 	    
-//      if(cookies==null || cookies.length==0){
-//			
-//			respEntity = new ResponseEntity( HttpStatus.BAD_REQUEST);
-//			return respEntity;
-//			
-//		}		
+      if(cookies==null || cookies.length==0){
+			
+			respEntity = new ResponseEntity( HttpStatus.BAD_REQUEST);
+			return respEntity;
+			
+		}		
 	    
 		JSONObject result=null;
 		
@@ -183,10 +183,12 @@ public class RESTController {
 			respEntity = new ResponseEntity (result_output, HttpStatus.OK);
 			return respEntity;
 		}
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Access-Control-Allow-Origin", "*");
 		result_output.put("result_code", result_code);
 		result_output.put("cookie", cookies);
 		
-		respEntity = new ResponseEntity (result_output, HttpStatus.OK);
+		respEntity = new ResponseEntity (result_output,responseHeaders, HttpStatus.OK);
 		return respEntity;
 
 	}
