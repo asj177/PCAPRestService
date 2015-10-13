@@ -18,10 +18,10 @@ JNIEXPORT jstring JNICALL Java_demo_JNIWrapper_pax_1get_1error_1string
 /*
  * Class:     demo_JNIWrapper
  * Method:    packet_mining_start
- * Signature: (Ldemo/PcapParameters;)I
+ * Signature: (Ldemo/pax_store_mining_query_param_s;Ldemo/OutParams;)I
  */
 JNIEXPORT jint JNICALL Java_demo_JNIWrapper_packet_1mining_1start
-  (JNIEnv *, jobject, jobject);
+  (JNIEnv *, jobject, jobject, jobject);
 
 /*
  * Class:     demo_JNIWrapper
@@ -38,6 +38,22 @@ JNIEXPORT jint JNICALL Java_demo_JNIWrapper_packet_1mining_1cancel
  */
 JNIEXPORT jint JNICALL Java_demo_JNIWrapper_packet_1mining_1get_1pcap_1file_1name
   (JNIEnv *, jobject, jstring, jstring);
+
+/*
+ * Class:     demo_JNIWrapper
+ * Method:    pax_packet_mining_get_status
+ * Signature: (Ljava/lang/String;Ldemo/OutParams;)I
+ */
+JNIEXPORT jint JNICALL Java_demo_JNIWrapper_pax_1packet_1mining_1get_1status
+  (JNIEnv *, jclass, jstring, jobject);
+
+/*
+ * Class:     demo_JNIWrapper
+ * Method:    pax_packet_mining_get_query_stats
+ * Signature: (Ljava/lang/String;Ldemo/PCAPMiningStats;)I
+ */
+JNIEXPORT jint JNICALL Java_demo_JNIWrapper_pax_1packet_1mining_1get_1query_1stats
+  (JNIEnv *, jclass, jstring, jobject);
 
 #ifdef __cplusplus
 }
