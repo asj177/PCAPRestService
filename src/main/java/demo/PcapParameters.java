@@ -4,12 +4,67 @@ import javax.servlet.http.Cookie;
 
 public class PcapParameters {
 
-	String time_range;
+	String time_start;
+	String time_end;
 	String flow_id;
 	String ip_a;
+	String mask_a;
+	String service_id;
+	String expression_id;
+	String mining_output_location;
+	String pcap_out_file_fd;
+	public String getTime_start() {
+		return time_start;
+	}
+	public void setTime_start(String time_start) {
+		this.time_start = time_start;
+	}
+	public String getTime_end() {
+		return time_end;
+	}
+	public void setTime_end(String time_end) {
+		this.time_end = time_end;
+	}
+	public String getMask_a() {
+		return mask_a;
+	}
+	public void setMask_a(String mask_a) {
+		this.mask_a = mask_a;
+	}
+	public String getService_id() {
+		return service_id;
+	}
+	public void setService_id(String service_id) {
+		this.service_id = service_id;
+	}
+	public String getExpression_id() {
+		return expression_id;
+	}
+	public void setExpression_id(String expression_id) {
+		this.expression_id = expression_id;
+	}
+	public String getMining_output_location() {
+		return mining_output_location;
+	}
+	public void setMining_output_location(String mining_output_location) {
+		this.mining_output_location = mining_output_location;
+	}
+	public String getPcap_out_file_fd() {
+		return pcap_out_file_fd;
+	}
+	public void setPcap_out_file_fd(String pcap_out_file_fd) {
+		this.pcap_out_file_fd = pcap_out_file_fd;
+	}
+	public int getQuery_id() {
+		return query_id;
+	}
+	public void setQuery_id(int query_id) {
+		this.query_id = query_id;
+	}
 	String ip_b;
 	String port_a;
 	String port_b;
+	int query_id;
 	Cookie[]cookies;
 	public Cookie[] getCookies() {
 		return cookies;
@@ -17,12 +72,7 @@ public class PcapParameters {
 	public void setCookies(Cookie[] cookies) {
 		this.cookies = cookies;
 	}
-	public String getTime_range() {
-		return time_range;
-	}
-	public void setTime_range(String time_range) {
-		this.time_range = time_range;
-	}
+	
 	public String getFlow_id() {
 		return flow_id;
 	}
