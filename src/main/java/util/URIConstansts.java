@@ -17,6 +17,9 @@ public class URIConstansts {
 	public static final String PCAP_SO_FILE_LOCATION="/home/arpit/Documents/JNI/LatestJNI/lib_pcap.so";
 	public static final String PCAP_LIBRARY_NAME="lib_pcap.so";
 	//public static final String PCAP_SO_FILE_LOCATION="/opt/cn/sdk/utils/REST/lib_pcap.so";
+	
+	public static final String ES_END_POINT="localhost";
+	public static final String ES_INDEX="add your es index ";
 
 	
 }
