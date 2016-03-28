@@ -35,7 +35,7 @@ Runs at 8080
 
 
 #Functions 
-  #1)Start the PCAP Mining Process API 
+#  1)Start the PCAP Mining Process API 
   
    EndPoint:/pcap
    
@@ -50,7 +50,7 @@ Runs at 8080
    Headers Should also contain the Key 
    
    
-  #2)Get PCAP Status API 
+#  2)Get PCAP Status API 
   
    EndPoint:/pcap/status
    
@@ -63,7 +63,7 @@ Runs at 8080
    Headers should also contain the Key 
    
   
-  #3)Get PCAP Mining Stats 
+#   3)Get PCAP Mining Stats 
   
    EndPoint:/pcap/miningStat
    
@@ -78,9 +78,9 @@ Runs at 8080
    Headers should also contain the Key 
    
    
-   #4)Cancel PCAP Operations:Work in Progress
+#   4)Cancel PCAP Operations:Work in Progress
    
-   #5)Get PCAP File 
+#    5)Get PCAP File 
    
    EndPoint:/pcap/file
    
@@ -91,7 +91,7 @@ Runs at 8080
    Request Params:Should contain the file name which is the key 
    
    
-   #6)Get ES Data
+#   6)Get ES Data
    
    EndPoint:/esdata/{to}/{from}
    
