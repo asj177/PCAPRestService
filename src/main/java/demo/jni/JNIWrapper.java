@@ -10,7 +10,7 @@ import util.ERROR_PCAP_MAPPING;
 import util.URIConstansts;
 
 /**
- * This Class is contains all PCAP JNI Calls .
+ * This Class is contains all PCAP JNI Calls .This Package will be used only on digital ocean  or on the appliance (Demo Box ) .For normal testing use the one present in demo package
  * @author arpit
  *
  */
