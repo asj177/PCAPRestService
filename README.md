@@ -2,7 +2,7 @@
 REST service to provide users information regarding the packet capture process .It talks with a C library via JNI ,and provides a JSON response to the client .
 Its also use to get packet data from the elasticsearch .Please see the section on Functions provided 
 
-#Creating Library from C file 
+#Creating .SO from C file 
 
 Below is the command to generate the .SO file .Here we have loaded the library using a library path,you can also directly load it from java path .
 
