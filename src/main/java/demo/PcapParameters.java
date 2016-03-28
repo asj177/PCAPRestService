@@ -9,6 +9,20 @@ public class PcapParameters {
 	String flow_id;
 	String ip_a;
 	String mask_a;
+	String mask_b;
+	String payload_contains_expression;
+	public String getPayload_contains_expression() {
+		return payload_contains_expression;
+	}
+	public void setPayload_contains_expression(String payload_contains_expression) {
+		this.payload_contains_expression = payload_contains_expression;
+	}
+	public String getMask_b() {
+		return mask_b;
+	}
+	public void setMask_b(String mask_b) {
+		this.mask_b = mask_b;
+	}
 	String service_id;
 	String expression_id;
 	String mining_output_location;
@@ -66,6 +80,13 @@ public class PcapParameters {
 	String port_b;
 	int query_id;
 	Cookie[]cookies;
+	String key;
+	public String getKey() {
+		return key;
+	}
+	public void setKey(String key) {
+		this.key = key;
+	}
 	public Cookie[] getCookies() {
 		return cookies;
 	}
