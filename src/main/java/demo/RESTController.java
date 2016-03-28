@@ -526,10 +526,10 @@ public class RESTController {
 		Client client;
 		try {
 			client = TransportClient.builder().build()
-					.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("45.55.28.43"), 9300));
+					.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(URIConstansts.ES_END_POINT), 9300));
 		
 		SearchResponse response = client
-				.prepareSearch("cn_es_rt_w_prod_risk_ex")
+				.prepareSearch(URIConstansts.ES_INDEX)
 				.setSearchType(SearchType.DFS_QUERY_THEN_FETCH).setFrom(from)
 				.setSize(to).setExplain(true).execute().actionGet();
 		if (response.getHits().getHits().length > 0) {
