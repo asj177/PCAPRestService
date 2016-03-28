@@ -1,55 +1,66 @@
 package demo;
 
-import javax.servlet.http.Cookie;
 
+
+import java.io.FileNotFoundException;
+
+import demo.OutParams;
+import demo.PCAPMiningStats;
+import util.ERROR_PCAP_MAPPING;
+import util.URIConstansts;
+
+/**
+ * This Class is contains all PCAP JNI Calls .
+ * @author arpit
+ *
+ */
 public class JNIWrapper {
 
-	static{
-		
+	static {
 
-		System.load("/home/arpit/Documents/JNI/newJNI/libJNIDemo.so");
-		
-		//System.loadLibrary("JNIDemo");
+		try {
+			System.out.println("Loading Library "
+					+ URIConstansts.PCAP_LIBRARY_NAME);
+			System.load(URIConstansts.PCAP_SO_FILE_LOCATION);
+
+		} catch (UnsatisfiedLinkError error) {
+			System.err.println("Cannot load Library"
+					+ URIConstansts.PCAP_SO_FILE_LOCATION
+					+ ERROR_PCAP_MAPPING.LIBRARY_NOT_LOADED);
+			error.printStackTrace();
+			
+
+		} catch (Exception error) {
+			error.printStackTrace();
+			
+		}
+
+		System.out.println("Library loaded successfully");
+
 	}
-	
-	//Get Error String
-	public native String pax_get_error_string(int error_code);
-	
-	//Get Path in output param and status
-	public native int  packet_mining_start(pax_store_mining_query_param_s packet_mining_params,OutParams filePath);
-	
-	
-	//Get status
-	public native int packet_mining_cancel(String cookies);
-	
-	
-	//Get the fileName and status
-	public native int packet_mining_get_pcap_file_name(String cookies,String fileName);
-	
-	
-	//Get the Percentage status
-	public static native int pax_packet_mining_get_status(String cookies,OutParams percentage_complete);
-	
-	
-	//Get Mining Stats
-	public static native int pax_packet_mining_get_query_stats(String cookies,PCAPMiningStats miningstat);
-	
-	/*public static void main(String args[]){
-	
-		JNIWrapper jni=new JNIWrapper();
-		int per=70;
-		OutParams out=new OutParams();
-		int result=jni.packet_mining_start(new pax_store_mining_query_param_s(),out);
-		System.out.println(out.getPath()+" reslt os "+result);
+
+	//private native static void pax_mining_lib_init();
+		//Get Error String
+		public native String pax_get_error_string(int error_code);
 		
-////		try{
-////	
-////		JNIWrapper jni=new JNIWrapper();
-////		int result=jni.multiply(7, 8);
-////		System.out.println("Result is "+result);
-////		}catch(Exception e){
-////			e.printStackTrace();
-////		}
-////		
-	}*/
+		//Get Path in output param and status
+		//public native int  packet_mining_start(String packet_mining_fileName,OutParams filePath);
+		public native int  pax_packet_mining_start(String packet_mining_fileName);
+		
+		
+		//Get status
+		public native int pax_packet_mining_cancel(String cookies);
+		
+		
+		//Get the fileName and status
+		//public native int packet_mining_get_pcap_file_name(String cookies,String fileName);
+		
+		
+		//Get the Percentage status cookies=jstring cookies and perce_complete=jobject jobj
+		public static native int pax_packet_mining_get_status(String cookies,OutParams percentage_complete);
+		
+		
+		//Get Mining Stats
+		public static native int pax_packet_mining_get_query_stats(String cookies,PCAPMiningStats miningstat);
+
 }
