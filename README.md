@@ -2,6 +2,14 @@
 REST service to provide users information regarding the packet capture process .It talks with a C library via JNI ,and provides a JSON response to the client .
 Its also use to get packet data from the elasticsearch .Please see the section on Functions provided 
 
+#Creating Library from C file 
+
+Below is the command to generate the .SO file .Here we have loaded the library using a library path,you can also directly load it from java path .
+
+gcc -fPIC -shared -I /usr/lib/jvm/java-8-oracle/include -I /usr/lib/jvm/java-8-oracle/include/linux -o libJNIDemo.so JNIWrapper.c
+
+Make sure the header file and the .C file are in the same directory .Once the Library .SO file is created,update the PCAP_SO_FILE_LOCATION in URIConstansts.java 
+
 #Build process,requirements
 
 1)Below are the gradle specifications (Please check build.gradle file )
