@@ -6,6 +6,13 @@ public class PCAPMiningStats {
 	long pkts_searched;
 	long pages_searched;
 	long directory_entries_searched;
+	long query_exec;
+	public long getQuery_exec() {
+		return query_exec;
+	}
+	public void setQuery_exec(long query_exec) {
+		this.query_exec = query_exec;
+	}
 	public long getPkts_matched() {
 		return pkts_matched;
 	}
