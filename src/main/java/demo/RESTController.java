@@ -47,8 +47,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import util.ERROR_PCAP_MAPPING;
-import util.URIConstansts;
+import util.URIConstants;
 import exceptions.PCAPException;
+import java.lang.instrument.*;
 
 /**
  * This is rest controller with below API's
@@ -69,7 +70,7 @@ public class RESTController {
 	 * @param request
 	 * @return Response Entity
 	 */
-	@RequestMapping(value = URIConstansts.GET_ES_ENDPOINT, produces = { "application/json" }, method = RequestMethod.GET)
+	@RequestMapping(value = URIConstants.GET_ES_ENDPOINT, produces = { "application/json" }, method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity getESData(HttpServletRequest request) {
 		ResponseEntity respEntity = null;
 		try{
@@ -116,7 +117,7 @@ public class RESTController {
 	 */
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = URIConstansts.PCAP, produces = { "application/json" }, method = RequestMethod.POST)
+	@RequestMapping(value = URIConstants.PCAP, produces = { "application/json" }, method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity getPcap(HttpServletRequest request,
 			@RequestBody PcapParameters pcap_params) {
 		System.out.println("PCAP Start called");
@@ -161,7 +162,7 @@ public class RESTController {
 		
 		}catch(UnsatisfiedLinkError error){
 			System.err.println("Error in Method getPcap "
-					+ URIConstansts.PCAP_SO_FILE_LOCATION
+					+ URIConstants.PCAP_SO_FILE_LOCATION
 					+ ERROR_PCAP_MAPPING.LIBRARY_NOT_LOADED);
 			error.printStackTrace();
 			respEntity=new ResponseEntity(ERROR_PCAP_MAPPING.ERROR_IN_PCAP_MINING_STATUS, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -194,7 +195,7 @@ public class RESTController {
 	
 	private String createPCAPMiningQueryINI(PcapParameters output) throws InvalidFileFormatException,IOException {
 		String formattedOutput = "";
-		File file = new File(URIConstansts.PCAP_INI_FILE_LOCATION);
+		File file = new File(URIConstants.PCAP_INI_FILE_LOCATION);
 		try {
 			if (!file.exists()) {
 				file.createNewFile();
@@ -281,7 +282,7 @@ public class RESTController {
 	 */
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = URIConstansts.GET_STATUS, produces = { "application/json" }, method = RequestMethod.GET)
+	@RequestMapping(value = URIConstants.GET_STATUS, produces = { "application/json" }, method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity getStatus(HttpServletRequest request) {
 
 		ResponseEntity respEntity = null;
@@ -309,7 +310,7 @@ public class RESTController {
 		System.out.println("Path is " + percentage_complete.getPath());
 		}catch(UnsatisfiedLinkError error){
 			System.err.println("Error in GET PCAP Status "
-					+ URIConstansts.PCAP_SO_FILE_LOCATION
+					+ URIConstants.PCAP_SO_FILE_LOCATION
 					+ ERROR_PCAP_MAPPING.LIBRARY_NOT_LOADED);
 			error.printStackTrace();
 			respEntity=new ResponseEntity(ERROR_PCAP_MAPPING.ERROR_IN_PCAP_MINING_STATUS, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -352,7 +353,7 @@ public class RESTController {
 	 * @throws IOException
 	 */
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = URIConstansts.GET_FILE, produces = { MediaType.APPLICATION_OCTET_STREAM_VALUE }, method = RequestMethod.GET)
+	@RequestMapping(value = URIConstants.GET_FILE, produces = { MediaType.APPLICATION_OCTET_STREAM_VALUE }, method = RequestMethod.GET)
 	public void getFile(
 			@RequestParam(value = "fileName", required = false) String fileName,
 			HttpServletRequest request, HttpServletResponse response)
@@ -360,11 +361,11 @@ public class RESTController {
         try{
 		fileName = "File.pcap";
 		byte[] reportBytes = null;
-		File result = new File(URIConstansts.PCAP_FILE_LOCATION + fileName);
+		File result = new File(URIConstants.PCAP_FILE_LOCATION + fileName);
 		System.out.println("File received");
 		if (result.exists()) {
 			InputStream inputStream = new FileInputStream(
-					URIConstansts.PCAP_FILE_LOCATION + fileName);
+					URIConstants.PCAP_FILE_LOCATION + fileName);
 			String type = result.toURL().openConnection()
 					.guessContentTypeFromName(fileName);
 			response.setHeader("Content-Disposition", "attachment; filename="
@@ -401,7 +402,7 @@ public class RESTController {
 	 * @return Result code of the cancel operation
 	 */
 
-	@RequestMapping(value = URIConstansts.PCAP, produces = { "application/json" }, method = RequestMethod.DELETE)
+	@RequestMapping(value = URIConstants.PCAP, produces = { "application/json" }, method = RequestMethod.DELETE)
 	public @ResponseBody ResponseEntity cancelOperation(
 			HttpServletRequest request) {
 
@@ -438,7 +439,7 @@ public class RESTController {
 		
 		}catch(UnsatisfiedLinkError error){
 			System.err.println("Error Occured in Method  cancelOperation"
-					+ URIConstansts.PCAP_SO_FILE_LOCATION
+					+ URIConstants.PCAP_SO_FILE_LOCATION
 					+ ERROR_PCAP_MAPPING.LIBRARY_NOT_LOADED);
 			error.printStackTrace();
 			respEntity=new ResponseEntity(ERROR_PCAP_MAPPING.ERROR_IN_PCAP_MINING_STATUS, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -468,7 +469,7 @@ public class RESTController {
 	 * @return Response Entity which contains mining statistics 
 	 */
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = URIConstansts.GET_MINING_PCAP, produces = { "application/json" }, method = RequestMethod.POST)
+	@RequestMapping(value = URIConstants.GET_MINING_PCAP, produces = { "application/json" }, method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity getMiningStat(
 			HttpServletRequest request, @RequestBody PcapParameters pcap_params) {
 		ResponseEntity respEntity = null;
@@ -488,7 +489,7 @@ public class RESTController {
 		respEntity = new ResponseEntity(result_output, HttpStatus.OK);
         }catch(UnsatisfiedLinkError error){
 			System.err.println("Error Occured in Method  getMiningStat "
-					+ URIConstansts.PCAP_SO_FILE_LOCATION
+					+ URIConstants.PCAP_SO_FILE_LOCATION
 					+ ERROR_PCAP_MAPPING.LIBRARY_NOT_LOADED);
 			error.printStackTrace();
 			respEntity=new ResponseEntity(ERROR_PCAP_MAPPING.ERROR_IN_PCAP_MINING_STATUS, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -508,6 +509,55 @@ public class RESTController {
 		return respEntity;
 
 	}
+	
+	
+	/**
+	 * Method to get the stats
+	 * 
+	 * @param request:Http request from the client 
+	 * @param pcap_params:PCAP Parameters passed by the client 
+	 * @return Response Entity which contains mining statistics 
+	 */
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/dygraph", produces = { "application/json" }, method = RequestMethod.GET)
+	public @ResponseBody ResponseEntity getDyGraphData(
+			HttpServletRequest request) {
+		ResponseEntity respEntity = null;
+        try{
+		
+		JNIWrapper pax_output = new JNIWrapper();
+		HashMap result_output = new HashMap();
+		DataAvailable[]data=new DataAvailable[605824];
+		//What should be the intial length of array here ?
+		for(int i=0;i<605824;i++){
+			data[i]=new DataAvailable();
+		}
+		
+		
+		FileRead f=new FileRead();
+		//f.readFile();
+		int resultCode = pax_output.pax_store_get_data_avail_info(data);
+		result_output.put("result_code", resultCode);
+		
+		result_output.put("dygraph", data);
+		respEntity = new ResponseEntity(result_output, HttpStatus.OK);
+        }catch(UnsatisfiedLinkError error){
+			System.err.println("Error Occured in Method  getMiningStat "
+					+ URIConstants.PCAP_SO_FILE_LOCATION
+					+ ERROR_PCAP_MAPPING.LIBRARY_NOT_LOADED);
+			error.printStackTrace();
+			respEntity=new ResponseEntity(ERROR_PCAP_MAPPING.ERROR_IN_PCAP_MINING_STATUS, HttpStatus.INTERNAL_SERVER_ERROR);
+			return respEntity;
+			
+		}catch(Exception error){
+			System.out.println("Error Occured in Method getMiningStat");
+			error.printStackTrace();
+			respEntity=new ResponseEntity(ERROR_PCAP_MAPPING.ERROR_IN_PCAP_MINING_STATUS, HttpStatus.INTERNAL_SERVER_ERROR);
+			return respEntity;
+		}
+		return respEntity;
+
+	}
 
 	/**
 	 * Method to get the ES Data 
@@ -518,7 +568,7 @@ public class RESTController {
 	 * @return Response Entity which contains ES data 
 	 */
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = URIConstansts.GET_ES_DATA, produces = { "application/json" }, method = RequestMethod.GET, headers = "Accept=*/*")
+	@RequestMapping(value = URIConstants.GET_ES_DATA, produces = { "application/json" }, method = RequestMethod.GET, headers = "Accept=*/*")
 	public @ResponseBody ResponseEntity getESData(HttpServletRequest request,
 			@PathVariable("to") int to, @PathVariable("from") int from) {
 		ResponseEntity respEntity = null;
@@ -526,10 +576,10 @@ public class RESTController {
 		Client client;
 		try {
 			client = TransportClient.builder().build()
-					.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(URIConstansts.ES_END_POINT), 9300));
+					.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(URIConstants.ES_END_POINT), 9300));
 		
 		SearchResponse response = client
-				.prepareSearch(URIConstansts.ES_INDEX)
+				.prepareSearch(URIConstants.ES_INDEX)
 				.setSearchType(SearchType.DFS_QUERY_THEN_FETCH).setFrom(from)
 				.setSize(to).setExplain(true).execute().actionGet();
 		if (response.getHits().getHits().length > 0) {
