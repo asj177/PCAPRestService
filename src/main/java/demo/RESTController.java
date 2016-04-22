@@ -359,11 +359,12 @@ public class RESTController {
 			HttpServletRequest request, HttpServletResponse response)
 			{
         try{
-		fileName = "File.pcap";
+		//fileName = "File.pcap";
 		byte[] reportBytes = null;
 		File result = new File(URIConstants.PCAP_FILE_LOCATION + fileName);
-		System.out.println("File received");
+		System.out.println("File received: "+URIConstants.PCAP_FILE_LOCATION + fileName);
 		if (result.exists()) {
+			System.out.println("File exists ");
 			InputStream inputStream = new FileInputStream(
 					URIConstants.PCAP_FILE_LOCATION + fileName);
 			String type = result.toURL().openConnection()
@@ -385,6 +386,9 @@ public class RESTController {
 			System.out.println("FIle sent ");
 
 		}
+		
+		System.out.println("File does not exists ");
+		
         }catch (IOException ioError){
         	System.out.println("IO Exception Error Occured in getFile method ");
         	ioError.printStackTrace();
