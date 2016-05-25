@@ -73,10 +73,19 @@ public class RESTController {
 	@RequestMapping(value = URIConstants.GET_ES_ENDPOINT, produces = { "application/json" }, method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity getESData(HttpServletRequest request) {
 		ResponseEntity respEntity = null;
+		
+		File file = new File(URIConstants.ES_IP_INI_FILE);
+		String ip="";
 		try{
 		
-		HashMap<String, String> es_data = getESData();
-		respEntity = new ResponseEntity(es_data, HttpStatus.OK);
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+
+			Ini ini = new Ini(file);
+			ip=ini.get("ES_INFO", "ES_IP");
+
+			respEntity=new ResponseEntity(ip,HttpStatus.OK);
 		
 		}catch(Exception error){
 			System.out.println("Error Occured at Method getESData(HttpServletRequest request)");
@@ -120,7 +129,7 @@ public class RESTController {
 	@RequestMapping(value = URIConstants.PCAP, produces = { "application/json" }, method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity getPcap(HttpServletRequest request,
 			@RequestBody PcapParameters pcap_params) {
-		System.out.println("PCAP Start called");
+		//System.out.println("PCAP Start called");
 		ResponseEntity respEntity = null;
 		
 		try{
@@ -144,7 +153,7 @@ public class RESTController {
 
 		int result_code = pax_pkt_mining.pax_packet_mining_start(fileName);
 
-		System.out.println("result code returned is " + result_code);
+		//System.out.println("result code returned is " + result_code);
 		if (result_code > 0) {
 			String result_status = pax_pkt_mining
 					.pax_get_error_string(result_code);
@@ -294,7 +303,7 @@ public class RESTController {
 			throw new PCAPException(ERROR_PCAP_MAPPING.KEY_NOT_PRESENT);
 			
 		}
-		System.out.println("Key is " + key);
+		//System.out.println("Key is " + key);
 
 		JNIWrapper pax_output = new JNIWrapper();
 		OutParams percentage_complete = new OutParams();
@@ -306,8 +315,8 @@ public class RESTController {
 		result_out.put("cookie", key);
 		respEntity = new ResponseEntity(result_out, HttpStatus.OK);
 
-		System.out.println("Percentage is " + percentage_complete.getValue());
-		System.out.println("Path is " + percentage_complete.getPath());
+		//System.out.println("Percentage is " + percentage_complete.getValue());
+		//System.out.println("Path is " + percentage_complete.getPath());
 		}catch(UnsatisfiedLinkError error){
 			System.err.println("Error in GET PCAP Status "
 					+ URIConstants.PCAP_SO_FILE_LOCATION
@@ -379,15 +388,15 @@ public class RESTController {
 			while ((read = inputStream.read(reportBytes)) != -1) {
 				os.write(reportBytes, 0, read);
 			}
-			System.out.println("Bytes sent" + reportBytes);
+			//System.out.println("Bytes sent" + reportBytes);
 			os.flush();
 			os.close();
 
-			System.out.println("FIle sent ");
+			//System.out.println("FIle sent ");
 
 		}
 		
-		System.out.println("File does not exists ");
+		//System.out.println("File does not exists ");
 		
         }catch (IOException ioError){
         	System.out.println("IO Exception Error Occured in getFile method ");

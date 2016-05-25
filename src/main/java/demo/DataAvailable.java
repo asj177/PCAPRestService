@@ -20,7 +20,7 @@ public String getTimestamp() {
 	return timestamp;
 }
 public void setTimeStamp(String timestamp) {
-	System.out.println("Timestamp is "+timestamp);
+	
 	this.timestamp = timestamp;
 }
 public long getBytesInSeconds() {

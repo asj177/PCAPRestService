@@ -16,7 +16,8 @@ public class URIConstants {
 	//public static final String PCAP_INI_FILE_LOCATION="/home/arpit/Documents/JNI/packetquey.ini";
 	//public static final String PCAP_SO_FILE_LOCATION="/home/arpit/Documents/JNI/LatestJNI/lib_pcap.so";
 	public static final String PCAP_LIBRARY_NAME="lib_pcap.so";
-	public static final String PCAP_SO_FILE_LOCATION="/opt/cn/sdk/utils/REST/lib_pcap.so";
+	public static final String PCAP_SO_FILE_LOCATION="/opt/cn/sdk/utils/REST/lib_pax_mining_jni.so";
+	public static final String ES_IP_INI_FILE="/opt/cn/sdk/utils/REST/es.ini";
 	
 	public static final String ES_END_POINT="45.55.28.43";
 	public static final String ES_INDEX="cn_es_rt_w_prod_risk_ex";

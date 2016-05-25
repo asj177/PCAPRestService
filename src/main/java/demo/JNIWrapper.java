@@ -20,8 +20,8 @@ public class JNIWrapper {
 	static {
 
 		try {
-			System.out.println("Loading Library "
-					+ URIConstants.PCAP_LIBRARY_NAME);
+			//System.out.println("Loading Library "
+			//		+ URIConstants.PCAP_LIBRARY_NAME);
 			System.load(URIConstants.PCAP_SO_FILE_LOCATION);
 			 pax_mining_lib_init ();
 
@@ -37,7 +37,7 @@ public class JNIWrapper {
 			
 		}
 
-		System.out.println("Library loaded successfully");
+		//System.out.println("Library loaded successfully");
 
 	}
 
